@@ -51,16 +51,9 @@ public class Main extends Application {
         // List manipulation
         lstLeftList = new ListView();
         lstLeftList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        lstLeftList.getItems().add("ITEM 1");
-        lstLeftList.getItems().add("ITEM 2");
-        lstLeftList.getItems().add("ITEM 3");
-        lstLeftList.getItems().add("ITEM 4");
-        lstLeftList.getItems().add("ITEM 5");
-        lstLeftList.getItems().add("OBJECT A");
-        lstLeftList.getItems().add("OBJECT B");
-        lstLeftList.getItems().add("OBJECT C");
-        lstLeftList.getItems().add("OBJECT D");
-        lstLeftList.getItems().add("OBJECT E");
+        for (availableItems items : availableItems.values()){
+            lstLeftList.getItems().add(items);
+        }
 
         lstRightList = new ListView();
         lstRightList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -68,6 +61,7 @@ public class Main extends Application {
         cmbFilter = new ComboBox();
         cmbFilter.getItems().addAll("All", "Goal Keepers", "Defense", "Midfielders", "Forwards");
         cmbFilter.getSelectionModel().selectFirst();
+        cmbFilter.setOnAction(e -> filterSelection());
 
         btnSave = new Button();
         btnSave.setText("Save & Close");
@@ -83,6 +77,39 @@ public class Main extends Application {
         window.setScene(scene);
         window.show();
 
+    }
+
+    private void filterSelection(){
+        switch (cmbFilter.getValue().toString()){
+            case "All":
+                System.out.println("ALL PLAYERS");
+                break;
+            case "Goal Keepers":
+                lstLeftList.getItems().clear();
+                lstLeftList.getItems().add("FILL WITH GOAL KEEPERS"); break;
+            case "Defense":
+                lstLeftList.getItems().clear();
+                lstLeftList.getItems().add("FILL WITH DEFENSE"); break;
+            case "Midfielders":
+                lstLeftList.getItems().clear();
+                lstLeftList.getItems().add("FILL WITH MIDFIELDERS"); break;
+            case "Forwards":
+                lstLeftList.getItems().clear();
+                lstLeftList.getItems().add("FILL WITH FORWARDS"); break;
+        }
+    }
+
+    private enum availableItems {
+        ITEM_1,
+        ITEM_2,
+        ITEM_3,
+        ITEM_4,
+        ITEM_5,
+        OBJECT_A,
+        OBJECT_B,
+        OBJECT_C,
+        OBJECT_D,
+        OBJECT_E
     }
 
     public static void main(String[] args) {
