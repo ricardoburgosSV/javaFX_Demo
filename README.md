@@ -1,3 +1,5 @@
 # JavaFX DEMO
 
-JavaFX demo for item selection using dual lists.
+This is a JavaFX demo for item selection using dual lists.
+
+march-2020
